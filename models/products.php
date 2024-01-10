@@ -23,10 +23,32 @@ class Products
         }
     }
 
+    public function get_name()
+    {
+        return $this->name;
+    }
+
+    public function set_discount($_discount)
+    {
+        if($_discount > 0 && $_discount < 100) {
+            $this->discount = $_discount;
+        }
+    }
+
+    public function get_discount()
+    {
+        return $this->discount;
+    }
+
     public function set_price($_price)
     {
         if($_price > 0) {
-            $this->price = $_price;
+            $this->price = ($_price / 100) * $this->discount;
         }
+    }
+
+    public function get_price()
+    {
+        return $this->price;
     }
 }
