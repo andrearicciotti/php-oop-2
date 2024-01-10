@@ -2,24 +2,24 @@
 class Products
 {
     protected $name;
+    protected $discount = 0;
     protected $price;
     protected $image;
     protected $category;
-    protected $discount;
 
-    public function __construct($_name, $_price, $_image, $_category, $_discount)
+    public function __construct($_name, $_discount, $_price, $_image, $_category)
     {
         $this->name = $_name;
+        $this->discount = $_discount;
         $this->price = $_price;
         $this->image = $_image;
         $this->category = $_category;
-        $this->discount = $_discount;
     }
 
-    public function set_name($_name)
+    public function set_name($name)
     {
-        if(strlen($_name < 20)) {
-            $this->name = $_name;
+        if (strlen($name < 20)) {
+            $this->name = $name;
         }
     }
 
@@ -28,10 +28,10 @@ class Products
         return $this->name;
     }
 
-    public function set_discount($_discount)
+    public function set_discount($discount)
     {
-        if($_discount > 0 && $_discount < 100) {
-            $this->discount = $_discount;
+        if ($discount > 0 && $discount < 100) {
+            $this->discount = $discount;
         }
     }
 
@@ -40,22 +40,22 @@ class Products
         return $this->discount;
     }
 
-    public function set_price($_price)
+    public function set_price($price)
     {
-        if($_price > 0) {
-            $this->price = ($_price / 100) * $this->discount;
+        if ($price > 0) {
+            $this->price = ($price / 100) * $this->discount;
         }
     }
 
     public function get_price()
     {
-        return number_format($this->price, 2);
+        return number_format(($this->price / 100) * $this->discount, 2);
     }
 
-    public function set_category($_category)
+    public function set_category($category)
     {
-        if($_category == 'cat' || 'dog') {
-            $this->category = $_category;
+        if ($category == 'cat' || 'dog' || 'all') {
+            $this->category = $category;
         }
     }
 
@@ -64,18 +64,13 @@ class Products
         return $this->category;
     }
 
-    public function set_image($_image)
+    public function set_image($image)
     {
-        if($this->category == 'cat') {
-            $_image = 'cat.jpg';
-        } else if($this->category == 'dog') {
-            $_image = 'dog.jpg';
-        }
-        $this->image = $_image;
+        $this->image = $image . '.jpg';
     }
 
     public function get_image()
     {
-        return $this->image;
+        return $this->image . '.jpg';
     }
 }
