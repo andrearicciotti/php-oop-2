@@ -1,7 +1,3 @@
-<?php
-
-
-
-?>
-
-<h1>Hello</h1>
+<div class="card">
+    Hello
+</div>

@@ -49,6 +49,33 @@ class Products
 
     public function get_price()
     {
-        return $this->price;
+        return number_format($this->price, 2);
+    }
+
+    public function set_category($_category)
+    {
+        if($_category == 'cat' || 'dog') {
+            $this->category = $_category;
+        }
+    }
+
+    public function get_category()
+    {
+        return $this->category;
+    }
+
+    public function set_image($_image)
+    {
+        if($this->category == 'cat') {
+            $_image = 'cat.jpg';
+        } else if($this->category == 'dog') {
+            $_image = 'dog.jpg';
+        }
+        $this->image = $_image;
+    }
+
+    public function get_image()
+    {
+        return $this->image;
     }
 }
